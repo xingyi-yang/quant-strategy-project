@@ -106,6 +106,7 @@ import numpy  as np
 import pandas as pd
 import yfinance as yf
 from scipy.stats import norm
+import matplotlib.pyplot as plt
 
 data =  yf.download('AAPL', start = '2018-01-01')
 prices = data["Close"]["AAPL"]
@@ -156,6 +157,21 @@ ci_upper = mc_prob + 1.96 * se
 print(f"Closed-form probability: {closed_form_prob:.4f}")
 print(f"Monte Carlo probability: {mc_prob:.4f}")
 print(f"95% CI for Monte Carlo estimate: ({ci_lower:.4f}, {ci_upper:.4f})")
+
+# -------------------------------
+# 4. Visualization
+# -------------------------------
+terminal_prices = S[-1]
+plt.figure(figsize=(8,5))
+plt.hist(terminal_prices, bins=50, density=True, alpha=0.7)
+threshold = 1.2 * S0
+plt.axvline(threshold, color="red", linestyle="--", linewidth=2,
+            label="20% increase threshold")
+plt.title("Distribution of Simulated Stock Prices After 1 Year")
+plt.xlabel("Terminal Stock Price")
+plt.ylabel("Density")
+plt.legend()
+plt.show()
 
 """
 I modeled stock prices using Geometric Brownian Motion and estimated the
