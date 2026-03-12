@@ -186,5 +186,3 @@ plt.show()
 # 5. Numerical Output
 print(f"Final Price: {S[-1]:.2f}")
 print(f"Theoretical Expected Price: {S0 * np.exp(mu * T):.2f}")
-print('')
-print('')
